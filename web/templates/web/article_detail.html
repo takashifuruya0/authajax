@@ -18,14 +18,15 @@
     </tr>
     <tr>
       <th>Category</th>
-      <td>{{object.category |default:'-'}}</td>
+      <td>{{object.category |default:''}}</td>
     </tr>
     <tr>
       <th>Tags</th>
       <td>{%for tag in object.tags.all%}{{tag}},{%endfor%}</td>
     </tr>
   </table>
-  <a href="{% url 'web:article_update' pk=object.pk %}">Edit</a>
+  <a href="{% url 'web:article_update' pk=object.pk %}" class="button btn-primary">Edit</a>
+  <a href="{% url 'web:article_delete' pk=object.pk %}" class="button btn-danger">Delete</a>
 </form>
 {% endblock %}
 

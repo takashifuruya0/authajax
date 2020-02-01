@@ -2,24 +2,30 @@
 {% block title %}ArticleList{% endblock %}
 
 {% block body %}
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>User</th>
-  </tr>
-  {% for article in object_list %}
-  <tr>
-    <td>
-      <a href="{% url 'web:article_detail' pk=article.pk %}">
-        {{article.pk}}
-      </a>
-    </td>
-    <td>{{article.name}}</td>
-    <td>{{article.user}}</td>
-  </tr>
-  {% endfor %}
-</table>
+<div class="row">
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>User</th>
+      <th>Category</th>
+      <th>Tags</th>
+    </tr>
+    {% for article in object_list %}
+    <tr>
+      <td>
+        <a href="{% url 'web:article_detail' pk=article.pk %}">
+          {{article.pk}}
+        </a>
+      </td>
+      <td>{{article.name}}</td>
+      <td>{{article.user}}</td>
+      <td>{{article.category |default:""}}</td>
+      <td>{% for tag in article.tags.all %}{{tag}}, {%endfor%}</td>
+    </tr>
+    {% endfor %}
+  </table>
+</div>
 {% endblock %}
 
 {% block script %}
