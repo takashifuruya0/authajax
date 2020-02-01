@@ -24,6 +24,10 @@
       <th>Tags</th>
       <td>{%for tag in object.tags.all%}{{tag}},{%endfor%}</td>
     </tr>
+    <tr>
+      <th>For Pro</th>
+      <td>{%if object.is_for_pro%}○{%endif%}</td>
+    </tr>
   </table>
   <a href="{% url 'web:article_update' pk=object.pk %}" class="button btn-primary">Edit</a>
   <a href="{% url 'web:article_delete' pk=object.pk %}" class="button btn-danger">Delete</a>

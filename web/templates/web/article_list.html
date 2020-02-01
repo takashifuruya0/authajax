@@ -7,9 +7,10 @@
     <tr>
       <th>ID</th>
       <th>Name</th>
-      <th>User</th>
+      <th>Created By</th>
       <th>Category</th>
       <th>Tags</th>
+      <th>Pro</th>
     </tr>
     {% for article in object_list %}
     <tr>
@@ -19,9 +20,10 @@
         </a>
       </td>
       <td>{{article.name}}</td>
-      <td>{{article.user}}</td>
+      <td>{{article.created_by}}</td>
       <td>{{article.category |default:""}}</td>
       <td>{% for tag in article.tags.all %}{{tag}}, {%endfor%}</td>
+      <td>{%if article.is_for_pro%}○{%endif%}</td>
     </tr>
     {% endfor %}
   </table>

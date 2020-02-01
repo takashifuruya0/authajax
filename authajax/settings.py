@@ -43,6 +43,9 @@ INSTALLED_APPS = [
     'allauth',  # 追加
     'allauth.account',  # 追加
     'allauth.socialaccount',  # 追加
+    # rule
+    'guardian',
+    'rules.apps.AutodiscoverRulesConfig',
 ]
 
 MIDDLEWARE = [
@@ -109,9 +112,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ja'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Tokyo'
 
 USE_I18N = True
 
@@ -142,3 +145,9 @@ EMAIL_USE_TLS = True
 # custom user object
 AUTH_USER_MODEL = 'accounts.User'
 
+# rules
+AUTHENTICATION_BACKENDS = (
+    'rules.permissions.ObjectPermissionBackend',
+    'django.contrib.auth.backends.ModelBackend',
+    'guardian.backends.ObjectPermissionBackend',
+)

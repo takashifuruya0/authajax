@@ -74,6 +74,10 @@ class User(AbstractBaseUser, PermissionsMixin):
             'Unselect this instead of deleting accounts.'
         ),
     )
+    is_pro = models.BooleanField(
+        default=False,
+        help_text=_('Can access articles for pro'),
+    )
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
     objects = UserManager()

@@ -4,6 +4,7 @@ from django.contrib import messages
 from web.models import *
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import ArticleForm
+from rules.contrib.views import PermissionRequiredMixin
 
 
 # Create your views here.
@@ -14,15 +15,19 @@ class ArticleListView(LoginRequiredMixin, ListView):
     model = Article
 
 
-class ArticleDetailView(LoginRequiredMixin, DetailView):
+class ArticleDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView):
     template_name = "web/article_detail.html"
     model = Article
+    permission_required = 'web.rules_read_article'
+    permission_denied_message = "Error"
 
 
-class ArticleUpdateView(LoginRequiredMixin, UpdateView):
+class ArticleUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
     template_name = "web/article_update.html"
     model = Article
     form_class = ArticleForm
+    permission_required = 'web.rules_update_article'
+
 
     def get_success_url(self):
         return reverse('web:article_detail', kwargs={'pk': self.object.pk})
@@ -37,10 +42,12 @@ class ArticleCreateView(LoginRequiredMixin, CreateView):
         return reverse('web:article_detail', kwargs={'pk': self.object.pk})
 
 
-class ArticleDeleteView(LoginRequiredMixin, DeleteView):
+class ArticleDeleteView(PermissionRequiredMixin, LoginRequiredMixin, DeleteView):
     model = Article
     form_class = ArticleForm
     template_name = "web/article_delete.html"
+    permission_required = "web.rules_delete_article"
+    permission_denied_message = "Not owned by you"
 
     def get_success_url(self):
         return reverse('web:article_list')

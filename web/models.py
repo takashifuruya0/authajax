@@ -21,10 +21,11 @@ class Category(models.Model):
 
 class Article(models.Model):
     name = models.CharField(max_length=100)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, blank=True, null=True, on_delete=models.CASCADE)
     tags = models.ManyToManyField(Tag, blank=True, null=True)
     is_active = models.BooleanField(default=True)
+    is_for_pro = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
