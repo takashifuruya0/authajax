@@ -1,5 +1,13 @@
+{% extends "accounts/base.html" %}
+{% block title %}ArticleDetail{% endblock %}
+
+{% block body %}
 <form method="post">
   <table class="table">
+    <tr>
+      <th>PK</th>
+      <td>{{object.pk}}</td>
+    </tr>
     <tr>
       <th>Name</th>
       <td>{{object.name}}</td>
@@ -14,8 +22,12 @@
     </tr>
     <tr>
       <th>Tags</th>
-      <td>{{object.tags |default:'-'}}</td>
+      <td>{%for tag in object.tags.all%}{{tag}},{%endfor%}</td>
     </tr>
   </table>
   <a href="{% url 'web:article_update' pk=object.pk %}">Edit</a>
 </form>
+{% endblock %}
+
+{% block script %}
+{% endblock %}
