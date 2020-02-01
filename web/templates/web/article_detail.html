@@ -1,0 +1,21 @@
+<form method="post">
+  <table class="table">
+    <tr>
+      <th>Name</th>
+      <td>{{object.name}}</td>
+    </tr>
+    <tr>
+      <th>User</th>
+      <td>{{object.user}}</td>
+    </tr>
+    <tr>
+      <th>Category</th>
+      <td>{{object.category |default:'-'}}</td>
+    </tr>
+    <tr>
+      <th>Tags</th>
+      <td>{{object.tags |default:'-'}}</td>
+    </tr>
+  </table>
+  <a href="{% url 'web:article_update' pk=object.pk %}">Edit</a>
+</form>

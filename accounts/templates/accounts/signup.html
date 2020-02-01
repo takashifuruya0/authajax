@@ -1,23 +1,7 @@
-<div>
-  Sign Up
-</div>
+{% extends "accounts/base.html" %}
+{% block title %}SignUp{% endblock %}
 
-<div>
-  <a href="{% url 'accounts:home' %}">Home</a>
-</div>
-
-<div>
-  <a href="{% url 'accounts:signout' %}">Log out</a>
-</div>
-
-<div>
-  <a href="{% url 'accounts:signin' %}">Log in</a>
-</div>
-
-<div>
-  <a href="{% url 'accounts:signup' %}">Sign up</a>
-</div>
-
+{% block body %}
 <div>
   <form method="post" action="{% url 'accounts:signup' %}">
     {% csrf_token %}
@@ -28,3 +12,7 @@
     <button type="submit">Signup</button>
   </form>
 </div>
+{% endblock %}
+
+{% block script %}
+{% endblock %}

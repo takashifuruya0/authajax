@@ -25,7 +25,7 @@ SECRET_KEY = '-)e^9xubjtdj#&x&fv-+@z8f9#lop&al!rpo6u!jt83r=!3ost'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "web",
     'accounts',  # 追加
     'django.contrib.sites',  # 追加
     'allauth',  # 追加
@@ -129,6 +130,7 @@ STATIC_URL = '/static/'
 SITE_ID = 1
 LOGIN_REDIRECT_URL = '/accounts/'
 ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/'
+LOGIN_URL = '/accounts/signin/'
 
 
 EMAIL_HOST = 'smtp.gmail.com'
@@ -136,3 +138,7 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = '自分nogmailアドレス'
 EMAIL_HOST_PASSWORD = 'gmailのパスワード'
 EMAIL_USE_TLS = True
+
+# custom user object
+AUTH_USER_MODEL = 'accounts.User'
+

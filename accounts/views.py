@@ -7,8 +7,6 @@ import json
 class HomeView(views.TemplateView):
     template_name = 'accounts/home.html'
 
-home_view = HomeView.as_view()
-
 
 class SigninView(views.LoginView):
     template_name = 'accounts/signin.html'
@@ -21,17 +19,12 @@ class SigninView(views.LoginView):
         return super(SigninView, self).form_valid(form)
 
 
-signin_view = SigninView.as_view()
-
-
 class SignupView(views.SignupView):
     template_name = 'accounts/signup.html'
 
     def get_context_data(self, **kwargs):
         context = super(SignupView, self).get_context_data(**kwargs)
         return context
-
-signup_view = SignupView.as_view()
 
 
 class SignoutView(views.LogoutView):
@@ -43,8 +36,6 @@ class SignoutView(views.LogoutView):
         if self.request.user.is_authenticated:
             self.logout()
         return redirect('/')
-
-signout_view = SignoutView.as_view()
 
 
 def ajax_login(request):

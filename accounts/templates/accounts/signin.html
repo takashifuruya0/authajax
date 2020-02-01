@@ -1,24 +1,7 @@
-<div>
-  Sign In
-  <p id="user">LoginUser: {{request.user}}</p>
-</div>
+{% extends "accounts/base.html" %}
+{% block title %}SignIn{% endblock %}
 
-<div>
-  <a href="{% url 'accounts:home' %}">Home</a>
-</div>
-
-<div>
-  <a href="{% url 'accounts:signout' %}">Log out</a>
-</div>
-
-<div>
-  <a href="{% url 'accounts:signin' %}">Log in</a>
-</div>
-
-<div>
-  <a href="{% url 'accounts:signup' %}">Sign up</a>
-</div>
-
+{% block body %}
 <div>
   <form method="post" action="{% url 'accounts:signin_ajax' %}" id="signin_ajax">
     {% csrf_token %}
@@ -26,26 +9,27 @@
     <button type="button" id="btn">Sign In</button>
   </form>
 </div>
+{% endblock %}
 
-
+{% block script %}
 <!--Signin Ajax-->
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script type="text/javascript">
-    $('#btn').click(function(event){
-      var form = $('#signin_ajax');
-      //console.log($('#testajax [name=post_type]').val())
-      console.log(form.serializeArray())
+<script type="text/javascript">
+  $('#btn').click(function(event){
+    var form = $('#signin_ajax');
+    //console.log($('#testajax [name=post_type]').val())
+    console.log(form.serializeArray())
 
-      $.ajax({
-        url: "{% url 'accounts:signin_ajax' %}",
-        method: form.prop("method"),
-        data: form.serialize(),
-        timeout: 10000,
-        dataType: "json",
-      })
-      .done( function(d) {
-        window.alert(d.status)
-        $('#user').text("LoginUser: "+d.username)
-      })
-    });
-  </script>
+    $.ajax({
+      url: "{% url 'accounts:signin_ajax' %}",
+      method: form.prop("method"),
+      data: form.serialize(),
+      timeout: 10000,
+      dataType: "json",
+    })
+    .done( function(d) {
+      window.alert(d.status)
+      $('#user').text("LoginUser: "+d.username)
+    })
+  });
+</script>
+{% endblock %}

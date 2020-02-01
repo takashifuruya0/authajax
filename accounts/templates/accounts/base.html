@@ -6,33 +6,43 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- favicon -->
-    <link rel="shortcut icon" type="image/x-icon" href="/document/dogP5.gif">
-<!--    &lt;!&ndash; Bootstrap CSS &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="/document/bootstrap/css/bootstrap.min.css" >-->
-<!--    &lt;!&ndash; Original CSS &ndash;&gt;-->
-<!--    <link rel="stylesheet" href="/document/css/common.css">-->
-<!--    <link rel="stylesheet" href="/document/css/nams.css">-->
-<!--    &lt;!&ndash; Font Awesome Icon &ndash;&gt;-->
-<!--    <script src="https://kit.fontawesome.com/0e8797feee.js" crossorigin="anonymous"></script>-->
-<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">-->
-<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.12/css/all.css" integrity="sha384-G0fIWCsCzJIMAVNQPfjH08cyYaUtMwjJwqiRKxxE/rx96Uroj1BtIQ6MLJuheaO9" crossorigin="anonymous">-->
-    <!--chart.js-->
-<!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.bundle.min.js"></script>-->
-    <!--datepicker-->
-<!--    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">-->
+<!--    <link rel="shortcut icon" type="image/x-icon" href="/document/dogP5.gif">-->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<!--    <script src="https://cdn.jsdelivr.net/npm/jquery-datetimepicker@2.5.20/build/jquery.datetimepicker.full.min.js"></script>-->
-
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-datetimepicker@2.5.20/jquery.datetimepicker.css">
   </head>
 
   <body>
+    <h5>User Info</h5>
+    <div>
+      <p id="user">LoginUser: {{request.user}}</p>
+    </div>
+
+    <h5>Auth</h5>
+    <div>
+      <a href="{% url 'accounts:home' %}">Home</a>
+    </div>
+    <div>
+      <a href="{% url 'accounts:signout' %}">Log out</a>
+    </div>
+    <div>
+      <a href="{% url 'accounts:signin' %}">Log in</a>
+    </div>
+    <div>
+      <a href="{% url 'accounts:signup' %}">Sign up</a>
+    </div>
+
+    <h5>Article</h5>
+    <div>
+      <a href="{%url 'web:article_list' %}">Article List</a>
+    </div>
+    <div>
+      <a href="{%url 'web:article_create' %}">Article Create</a>
+    </div>
     {% block body %}{% endblock %}
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-<!--    <script src="/document/bootstrap/js/bootstrap.min.js"></script>-->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     {% block script %}{% endblock %}
   </body>
 </html>

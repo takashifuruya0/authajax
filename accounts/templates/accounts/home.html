@@ -1,20 +1,8 @@
-<div>
-  Home
-  <p id="user">LoginUser: {{request.user}}</p>
-</div>
+{% extends "accounts/base.html" %}
+{% block title %}Home{% endblock %}
 
-<div>
-  <a href="{% url 'accounts:home' %}">Home</a>
-</div>
+{% block body %}
+{% endblock %}
 
-<div>
-  <a href="{% url 'accounts:signout' %}">Log out</a>
-</div>
-
-<div>
-  <a href="{% url 'accounts:signin' %}">Log in</a>
-</div>
-
-<div>
-  <a href="{% url 'accounts:signup' %}">Sign up</a>
-</div>
+{% block script %}
+{% endblock %}
