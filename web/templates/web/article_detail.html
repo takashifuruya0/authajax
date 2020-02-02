@@ -15,7 +15,7 @@
     </tr>
     <tr>
       <th>User</th>
-      <td>{{object.created_by}</td>
+      <td>{{object.created_by}}</td>
     </tr>
     <tr>
       <th>Category</th>
@@ -33,7 +33,7 @@
   {% has_perm 'web.rules_update_article' request.user object as is_editable %}
   {% if is_editable %}
   <a href="{% url 'web:article_update' pk=object.pk %}" class="btn btn-primary">Edit</a>
-  <a href="{% url 'web:article_delete' pk=object.pk %}" class="btn btn-danger">Delete</button>
+  <a href="{% url 'web:article_delete' pk=object.pk %}" class="btn btn-danger">Delete</a>
   {% endif %}
 </form>
 {% endblock %}
