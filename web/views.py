@@ -1,4 +1,4 @@
-from django.shortcuts import reverse
+from django.shortcuts import reverse, redirect
 from django.views.generic import DetailView, UpdateView, CreateView, DeleteView, RedirectView, ListView
 from django.contrib import messages
 from web.models import *
@@ -19,7 +19,10 @@ class ArticleDetailView(PermissionRequiredMixin, LoginRequiredMixin, DetailView)
     template_name = "web/article_detail.html"
     model = Article
     permission_required = 'web.rules_read_article'
-    permission_denied_message = "Error"
+
+    def handle_no_permission(self):
+        messages.warning(self.request, "You don't have permission to access it")
+        return redirect('web:article_list')
 
 
 class ArticleUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView):
@@ -28,9 +31,12 @@ class ArticleUpdateView(PermissionRequiredMixin, LoginRequiredMixin, UpdateView)
     form_class = ArticleForm
     permission_required = 'web.rules_update_article'
 
-
     def get_success_url(self):
         return reverse('web:article_detail', kwargs={'pk': self.object.pk})
+
+    def handle_no_permission(self):
+        messages.warning(self.request, "You don't have permission to update it")
+        return redirect('web:article_list')
 
 
 class ArticleCreateView(LoginRequiredMixin, CreateView):
@@ -57,3 +63,7 @@ class ArticleDeleteView(PermissionRequiredMixin, LoginRequiredMixin, DeleteView)
         messages.success(
             self.request, '「{}」を削除しました'.format(self.object))
         return result
+
+    def handle_no_permission(self):
+        messages.warning(self.request, "You don't have permission to delete it")
+        return redirect('web:article_list')
