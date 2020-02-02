@@ -1,4 +1,6 @@
 {% extends "accounts/base.html" %}
+{% load rules %}
+
 {% block title %}ArticleList{% endblock %}
 
 {% block body %}
@@ -12,12 +14,20 @@
       <th>Tags</th>
       <th>Pro</th>
     </tr>
+
     {% for article in object_list %}
+    {% has_perm 'web.rules_read_article' request.user article as is_available %}
     <tr>
       <td>
-        <a href="{% url 'web:article_detail' pk=article.pk %}">
+        {% if is_available %}
+        <button
+            class="btn-primary"
+            onclick=location.href="{% url 'web:article_detail' pk=article.pk %}">
           {{article.pk}}
-        </a>
+        </button>
+        {% else %}
+        <button class="btn-default">{{article.pk}}</button>
+        {% endif %}
       </td>
       <td>{{article.name}}</td>
       <td>{{article.created_by}}</td>

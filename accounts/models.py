@@ -76,7 +76,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     )
     is_pro = models.BooleanField(
         default=False,
-        help_text=_('Can access articles for pro'),
+        help_text=_('Can access articles for pro / プロユーザ'),
     )
     date_joined = models.DateTimeField(_('date joined'), default=timezone.now)
 
