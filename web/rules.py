@@ -1,10 +1,12 @@
 import rules
 import guardian
+from django.contrib.auth.models import Group
 
 
 @rules.predicate
 def is_article_owner(user, article):
     return article.created_by == user
+
 
 
 @rules.predicate
@@ -15,6 +17,6 @@ def is_article_pro_or_free(user, article):
         return False
 
 
-rules.add_perm('web.rules_read_article', is_article_pro_or_free)
+rules.add_perm('web.rules_read_article', is_article_pro_or_free & rules.is_group_member('Aグループ'))
 rules.add_perm('web.rules_update_article', is_article_owner)
 rules.add_perm('web.rules_delete_article', is_article_owner)
